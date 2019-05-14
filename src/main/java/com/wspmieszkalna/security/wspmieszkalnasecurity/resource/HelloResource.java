@@ -1,14 +1,20 @@
 package com.wspmieszkalna.security.wspmieszkalnasecurity.resource;
 
 
+import org.springframework.core.Ordered;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
-@RequestMapping("/hello")
-public class HelloResource {
+
+public class HelloResource extends WebMvcConfigurerAdapter {
 
     @GetMapping("/main")
     public String mainHello(){
@@ -20,5 +26,10 @@ public class HelloResource {
     public String securedHello()
     {
         return "Hello secured wrod!";
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public View index(Model model)  {
+        return new RedirectView("main.html");
     }
 }
