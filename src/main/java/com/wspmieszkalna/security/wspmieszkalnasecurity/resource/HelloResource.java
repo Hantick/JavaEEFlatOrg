@@ -25,7 +25,7 @@ public class HelloResource extends WebMvcConfigurerAdapter {
     @GetMapping("/secured/main")
     public String securedHello()
     {
-        return "Hello secured wrod!";
+        return "Hello secured word!";
     }
 
     /*@RequestMapping(value = "/", method = RequestMethod.GET)
