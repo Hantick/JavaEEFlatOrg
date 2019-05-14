@@ -23,9 +23,10 @@ public class Residents {
     private String surname;
     @Column(name = "phone_number")
     private String phone_number;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "resident_roles", joinColumns = @JoinColumn(name = "resident_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();;
+    private Set<Role> roles;
 
     public Residents() {
 

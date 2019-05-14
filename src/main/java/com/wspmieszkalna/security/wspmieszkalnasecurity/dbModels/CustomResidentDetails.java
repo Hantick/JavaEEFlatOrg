@@ -9,31 +9,27 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CustomResidentDetails extends Residents implements UserDetails {
-
-    public CustomResidentDetails(final Residents residents){
-        super(residents);
+public class CustomResidentDetails implements UserDetails {
+    private Residents resident;
+    public CustomResidentDetails(Residents resident){
+        this.resident=resident;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        List<SimpleGrantedAuthority> list = getRoles()
-                .stream()
+        return   resident.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_"+role.getRole()))
                 .collect(Collectors.toList());
-
-        return list;
     }
 
     @Override
     public String getPassword() {
-        return super.getPassword();
+        return resident.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return super.getLogin();
+        return resident.getLogin();
     }
 
     @Override

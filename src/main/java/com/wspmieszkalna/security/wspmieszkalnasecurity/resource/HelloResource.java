@@ -21,7 +21,7 @@ public class HelloResource extends WebMvcConfigurerAdapter {
         return "Main page";
     }
 
-   // @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping("/secured/main")
     public String securedHello()
     {
