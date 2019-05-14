@@ -28,8 +28,8 @@ public class HelloResource extends WebMvcConfigurerAdapter {
         return "Hello secured wrod!";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/", method = RequestMethod.GET)
     public View index(Model model)  {
         return new RedirectView("main.html");
-    }
+    }*/
 }
