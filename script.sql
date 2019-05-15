@@ -9,7 +9,7 @@ create table receipts
 
 create table residents
 (
-  resident_id  int         not null,
+  resident_id  int       AUTO_INCREMENT  not null, primary key,
   login        varchar(50) not null,
   password     varchar(50) not null,
   name         varchar(50) null,
@@ -68,8 +68,8 @@ CREATE TABLE `resident_roles` (
 );
 
 INSERT INTO `residents` (`resident_id`,`login`,`password`,`name`,`surname`,`phone_number`)
-VALUES('1','resadmin','respassword','Adminisław','Admowski','788555222'),
-      ('2','resuser','respassword','User','Userski','+48233444333');
+VALUES('resadmin','respassword','Adminisław','Admowski','788555222'),
+      ('resuser','respassword','User','Userski','+48233444333');
 
 INSERT INTO `resident_roles` (`resident_id`, `role_id`)
 VALUES(1,1),

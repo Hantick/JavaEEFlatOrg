@@ -22,7 +22,7 @@
          <a href="/">Strona Główna</a>
 
          <security:authorize access="! isAuthenticated()">
-            <a href="register.html">Zarejestruj</a>
+            <a href="/register">Zarejestruj</a>
             <a href="/secured/main">Zaloguj</a>
          </security:authorize>
          <security:authorize access="isAuthenticated()">

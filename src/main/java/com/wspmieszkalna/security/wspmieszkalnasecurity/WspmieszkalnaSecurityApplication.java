@@ -2,10 +2,15 @@ package com.wspmieszkalna.security.wspmieszkalnasecurity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class WspmieszkalnaSecurityApplication {
-
+public class WspmieszkalnaSecurityApplication extends SpringBootServletInitializer {
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(WspmieszkalnaSecurityApplication.class);
+    }
     public static void main(String[] args)
     {
         SpringApplication.run(WspmieszkalnaSecurityApplication.class, args);

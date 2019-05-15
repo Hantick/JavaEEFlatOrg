@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "residents")
-public class Residents {
+public class Resident {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,10 +28,15 @@ public class Residents {
     @JoinTable(name = "resident_roles", joinColumns = @JoinColumn(name = "resident_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public Residents() {
+
+
+    @Transient
+    private String passwordConfirm;
+
+    public Resident() {
 
     }
-    public Residents(Residents residents){
+    public Resident(Resident residents){
         this.id=residents.getId();
         this.login=residents.getLogin();
         this.password=residents.getPassword();
@@ -51,25 +56,22 @@ public class Residents {
     public String getLogin(){
         return login;
     }
-    public String getPassword(){
-        return password;
-    }
-    private String getName() {
-        return name;
-    }
-    private String getSurname() {
-        return surname;
-    }
-    private String getPhoneNumber() {
-        return phone_number;
-    }
+    public String getName() { return name; }
+    public String getPassword(){ return password; }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
+    public String getSurname() { return surname; }
+    public String getPhoneNumber() { return phone_number; }
+    public Set<Role> getRoles() { return roles; }
+    public String getPhone_number() { return phone_number; }
+    public String getPasswordConfirm() { return passwordConfirm; }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+    public void setRoles(Set<Role> roles) { this.roles = roles; }
+    public void setLogin(String login) { this.login = login; }
+    public void setPassword(String password) { this.password = password; }
+    public void setName(String name) { this.name = name; }
+    public void setSurname(String surname) { this.surname = surname; }
+    public void setPhone_number(String phone_number) { this.phone_number = phone_number; }
+    public void setId(int id) { this.id = id; }
 
+    public void setPasswordConfirm(String passwordConfirm) { this.passwordConfirm = passwordConfirm; }
 }

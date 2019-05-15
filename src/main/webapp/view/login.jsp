@@ -19,8 +19,7 @@
         <a href="/" class="logo"><strong>Przemysław Szafrański Beata Żurowska</strong></a>
         <nav id="nav">
             <a href="/">Strona Główna</a>
-            <a href="register.html">Zarejestruj</a>
-            <a href="/login">Zaloguj</a>
+            <a href="/register">Zarejestruj</a>
         </nav>
         <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
     </div>

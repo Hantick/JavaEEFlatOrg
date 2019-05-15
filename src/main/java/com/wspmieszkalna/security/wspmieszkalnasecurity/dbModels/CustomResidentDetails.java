@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CustomResidentDetails implements UserDetails {
-    private Residents resident;
-    public CustomResidentDetails(Residents resident){
+    private Resident resident;
+    public CustomResidentDetails(Resident resident){
         this.resident=resident;
     }
 
@@ -31,6 +31,7 @@ public class CustomResidentDetails implements UserDetails {
     public String getUsername() {
         return resident.getLogin();
     }
+
 
     @Override
     public boolean isAccountNonExpired() {
