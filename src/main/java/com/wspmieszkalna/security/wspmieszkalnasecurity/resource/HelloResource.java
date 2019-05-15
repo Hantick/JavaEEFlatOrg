@@ -30,5 +30,10 @@ public class HelloResource {
         model.addAttribute("message","test");
         return "index";
     }
+    @RequestMapping("/login")
+    public String login()
+    {
+        return "login";
+    }
 
 }

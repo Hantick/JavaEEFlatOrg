@@ -52,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("**/secured/**").authenticated()   //wszystko z zapiskiem secured bedzie wymagac logowania
                     .anyRequest().permitAll()// pozwol wszystkim
                     //.fullyAuthenticated() // kazdy requst bedzie authowany
-                    .and().formLogin().permitAll();
+                    .and().formLogin().loginPage("/login").permitAll();
 
 
     }
