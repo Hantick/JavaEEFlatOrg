@@ -1,0 +1,21 @@
+#labelHaslo,#labelLogin {
+    opacity: 0;
+}
+#footer{
+    padding:10px !important;
+}
+
+
+/*
+input[type="text"]{
+     width:30vw !important;
+ }
+
+input[type="password"]{
+    width:30vw !important;
+
+}
+fieldset{
+    margin: 0 40vw 0 20vw;
+}
+

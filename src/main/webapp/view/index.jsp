@@ -23,7 +23,7 @@
 
          <security:authorize access="! isAuthenticated()">
             <a href="register.html">Zarejestruj</a>
-            <a href="/login">Zaloguj</a>
+            <a href="/secured/main">Zaloguj</a>
          </security:authorize>
          <security:authorize access="isAuthenticated()">
             <a href="/profile">Witaj, <strong><security:authentication property="name"/></strong></a>

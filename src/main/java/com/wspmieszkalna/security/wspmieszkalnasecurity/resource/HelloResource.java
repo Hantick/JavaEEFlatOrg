@@ -20,7 +20,7 @@ public class HelloResource {
     @GetMapping("/secured/main")
     public String securedHello()
     {
-        return "index.html";
+        return "main";
     }
 
     //Main Page
