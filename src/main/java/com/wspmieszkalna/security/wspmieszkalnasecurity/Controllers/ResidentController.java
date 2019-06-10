@@ -2,16 +2,14 @@ package com.wspmieszkalna.security.wspmieszkalnasecurity.Controllers;
 
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.Resident;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.service.CustomResidentsDetailsService;
+import dto.LoginDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.programirex.pokemonidzapi.dto.user.GetUserDto;
-import pl.programirex.pokemonidzapi.dto.user.LoginDto;
-import pl.programirex.pokemonidzapi.dto.user.RegisterDto;
-import pl.programirex.pokemonidzapi.entity.User;
+
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -26,10 +24,10 @@ public class ResidentController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/login")
     @ResponseBody
-    public ResponseEntity login(@Valid @RequestBody String login, String password, BindingResult result) {
+    public ResponseEntity login(@Valid @RequestBody LoginDto loginDto, BindingResult result) {
         Resident logged = new Resident();
         if (!result.hasErrors()) {
-            logged = userService.login(login,password);
+            logged = userService.login(loginDto);
         }
         if (logged == null) {
             return new ResponseEntity<>("Nie udało się zalogować!", HttpStatus.BAD_REQUEST);

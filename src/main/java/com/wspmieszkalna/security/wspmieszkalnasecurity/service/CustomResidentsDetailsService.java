@@ -4,6 +4,7 @@ import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.CustomResidentD
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.Resident;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.repositories.ResidentsRepository;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.repositories.RolesRepository;
+import dto.LoginDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +39,12 @@ public class CustomResidentsDetailsService implements UserDetailsService {
         return optionalResidents
                 .map(CustomResidentDetails::new).get();
     }
-    public Resident login(String login, String password) {
-       Optional<Resident> user2 = residentsRepository.findResidentByLogin(login);
+    public Resident login(LoginDto loginDto) {
+       Optional<Resident> user2 = residentsRepository.findResidentByLogin(loginDto.getLogin());
        Resident user=user2.get();
         if(user == null)
             return null;
-        if(BCrypt.checkpw(password, user.getPassword() ))
+        if(BCrypt.checkpw(loginDto.getPassword(), user.getPassword() ))
             return user;
         return null;
     }
