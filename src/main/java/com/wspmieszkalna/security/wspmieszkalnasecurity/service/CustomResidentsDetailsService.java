@@ -44,7 +44,7 @@ public class CustomResidentsDetailsService implements UserDetailsService {
        Resident user=user2.get();
         if(user == null)
             return null;
-        if(BCrypt.checkpw(loginDto.getPassword(), user.getPassword() ))
+        if(bCryptPasswordEncoder.matches(loginDto.getPassword(), user.getPassword()))
             return user;
         return null;
     }
