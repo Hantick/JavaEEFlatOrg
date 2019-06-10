@@ -7,6 +7,7 @@
    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
    <meta name="viewport" content="width=device-width, initial-scale=1" />
    <link rel="stylesheet" href="assets/css/main.css" />
+   <link rel="stylesheet" href="assets/css/index.css" />
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
    <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 </head>
@@ -14,7 +15,7 @@
 <body>
 
 <!-- Header -->
-<div sec:authorize="isAuthenticated()">
+<div id="header_main" sec:authorize="isAuthenticated()">
 <header id="header">
    <div class="inner">
       <a href="/" class="logo"><strong>Flat Organisation App</strong></a>

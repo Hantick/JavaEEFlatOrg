@@ -10,11 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Controller
 @RequestMapping(value = "/user")
@@ -22,6 +19,7 @@ public class ResidentController {
     @Autowired
     CustomResidentsDetailsService userService;
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/login")
     @ResponseBody
     public ResponseEntity login(@Valid @RequestBody LoginDto loginDto, BindingResult result) {
