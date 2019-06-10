@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +37,15 @@ public class CustomResidentsDetailsService implements UserDetailsService {
         log.info("loadUserByUsername() : {}", login);
         return optionalResidents
                 .map(CustomResidentDetails::new).get();
+    }
+    public Resident login(String login, String password) {
+       Optional<Resident> user2 = residentsRepository.findResidentByLogin(login);
+       Resident user=user2.get();
+        if(user == null)
+            return null;
+        if(BCrypt.checkpw(password, user.getPassword() ))
+            return user;
+        return null;
     }
     public void save(Resident user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
