@@ -40,13 +40,15 @@ public class CustomResidentsDetailsService implements UserDetailsService {
                 .map(CustomResidentDetails::new).get();
     }
     public Resident login(LoginDto loginDto) {
+        Optional emptyOptional = Optional.empty();
        Optional<Resident> user2 = residentsRepository.findResidentByLogin(loginDto.getLogin());
-       Resident user=user2.get();
-        if(user == null)
+        if(user2 == emptyOptional)
             return null;
-        if(bCryptPasswordEncoder.matches(loginDto.getPassword(), user.getPassword()))
+        Resident user=user2.get();
+        if(user2 != emptyOptional && user!=null && user.getPassword().equals(loginDto.getPassword()))
             return user;
-        return null;
+        else
+            return null;
     }
     public void save(Resident user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
