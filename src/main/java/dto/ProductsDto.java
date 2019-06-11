@@ -7,8 +7,6 @@ public class ProductsDto {
     @NotNull
     @NotEmpty
     private String name;
-    @NotNull
-    @NotEmpty
     private String products;
 
     public String getName() {

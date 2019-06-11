@@ -66,7 +66,7 @@ public class FlatController {
     public ResponseEntity getProducts(@Valid @RequestBody ProductsDto productsDto, BindingResult result) {
         String products=null;
         if (!result.hasErrors()) {
-            products = flatService.getProducts(productsDto);
+            products = flatService.getProducts(productsDto.getName());
         }
         if (products.equals(null)) {
             return new ResponseEntity<>("Nie ma listy!", HttpStatus.BAD_REQUEST);

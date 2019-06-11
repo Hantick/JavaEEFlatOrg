@@ -82,9 +82,9 @@ public class FlatService {
         }
         return flat;
     }
-    public String getProducts(ProductsDto productsDto)
+    public String getProducts(String name)
     {
-        Flat flat = flatsRepository.findByName(productsDto.getName());
+        Flat flat = flatsRepository.findByName(name);
         if(flat == null)
             return null;
         return flat.getProducts();
