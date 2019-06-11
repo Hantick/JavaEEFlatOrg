@@ -10,7 +10,7 @@ public class Flat {
     @Column(name = "flat_id")
     private int id;
     @Column(name = "flat_name")
-    private String name;
+    private String flat_name;
     @Column(name = "flat_password")
     private String password;
     @Column(name = "flat_street")
@@ -56,7 +56,7 @@ public class Flat {
     }
 
     public String getName() {
-        return name;
+        return flat_name;
     }
 
     public String getPassword() {
@@ -84,7 +84,7 @@ public class Flat {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.flat_name = name;
     }
 
     public void setPassword(String password) {
@@ -111,7 +111,7 @@ public class Flat {
     }
 
     public Flat(String name, String password, String street, String number, String city, Resident flat_owner) {
-        this.name = name;
+        this.flat_name = name;
         this.password = password;
         this.street = street;
         this.number = number;
@@ -122,7 +122,7 @@ public class Flat {
 
     public Flat(Flat flats){
         this.id=flats.getId();
-        this.name = flats.getName();
+        this.flat_name = flats.getName();
         this.password = flats.getPassword();
         this.street = flats.getStreet();
         this.number = flats.getNumber();
