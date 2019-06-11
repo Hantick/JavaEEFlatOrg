@@ -5,6 +5,7 @@ import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.Resident;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.repositories.FlatsRepository;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.repositories.ResidentsRepository;
 import dto.LoginFlatDto;
+import dto.ProductsDto;
 import dto.RegisterFlatDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,5 +66,27 @@ public class FlatService {
             return null;
         }
         return flat;
+    }
+    public Flat setProducts(ProductsDto productsDto)
+    {
+        Flat flat = flatsRepository.findByName(productsDto.getName());
+        if(flat == null)
+            return null;
+        flat.setProducts(productsDto.getProducts());
+        try{
+            flatsRepository.save(flat);
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
+        return flat;
+    }
+    public String getProducts(ProductsDto productsDto)
+    {
+        Flat flat = flatsRepository.findByName(productsDto.getName());
+        if(flat == null)
+            return null;
+        return flat.getProducts();
     }
 }

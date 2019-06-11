@@ -19,6 +19,8 @@ public class Flat {
     private String number;
     @Column(name = "flat_city")
     private String city;
+    @Column(name = "products")
+    private String products;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(unique = true)
@@ -43,6 +45,14 @@ public class Flat {
     }
     public int getId() {
         return id;
+    }
+
+    public String getProducts() {
+        return products;
+    }
+
+    public void setProducts(String products) {
+        this.products = products;
     }
 
     public String getName() {
