@@ -89,4 +89,15 @@ public class FlatService {
             return null;
         return flat.getProducts();
     }
+    public Flat getFlat(int residentId)
+    {
+
+      //  int  flatId = flatsRepository.findByResidentId(residentId);
+       // Optional<Flat> flat = flatsRepository.findById(flatId);
+      //  if(flat.get()==null)
+       //     return null;
+      //  return flat.get()
+        //  ;
+        return null;
+    }
 }

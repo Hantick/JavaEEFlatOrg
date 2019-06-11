@@ -1,6 +1,7 @@
 package com.wspmieszkalna.security.wspmieszkalnasecurity.Controllers;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.Flat;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.service.FlatService;
+import dto.FindFlatDto;
 import dto.LoginFlatDto;
 import dto.ProductsDto;
 import dto.RegisterFlatDto;
@@ -72,6 +73,19 @@ public class FlatController {
             return new ResponseEntity<>("Nie ma listy!", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value = "/getFlat")
+    @ResponseBody
+    public ResponseEntity getUserFlat(@Valid @RequestBody FindFlatDto findFlatDto, BindingResult result) {
+        Flat flat = new Flat();
+        if (!result.hasErrors()) {
+            flat = flatService.getFlat(findFlatDto.getResidentId());
+        }
+        if (flat.equals(null)) {
+            return new ResponseEntity<>("Nie ma mieszkania/nie istnieje", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(flat, HttpStatus.OK);
     }
 }
 

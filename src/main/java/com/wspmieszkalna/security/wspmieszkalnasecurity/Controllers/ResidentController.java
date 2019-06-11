@@ -2,6 +2,7 @@ package com.wspmieszkalna.security.wspmieszkalnasecurity.Controllers;
 
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.Resident;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.service.CustomResidentsDetailsService;
+import com.wspmieszkalna.security.wspmieszkalnasecurity.service.FlatService;
 import dto.LoginDto;
 import dto.RegisterResidentDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ import javax.validation.Valid;
 public class ResidentController {
     @Autowired
     CustomResidentsDetailsService userService;
-
+    @Autowired
+    FlatService flatService;
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/login")
     @ResponseBody

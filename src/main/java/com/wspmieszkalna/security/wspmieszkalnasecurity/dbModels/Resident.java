@@ -24,6 +24,7 @@ public class Resident {
     @Column(name = "phone_number")
     private String phone_number;
 
+    private String flatName;
     @OneToOne(mappedBy = "flat_owner")
     private Flat flat;
 
