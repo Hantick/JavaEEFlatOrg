@@ -4,6 +4,7 @@ import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.Flat;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.Resident;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.repositories.FlatsRepository;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.repositories.ResidentsRepository;
+import dto.LoginFlatDto;
 import dto.RegisterFlatDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class FlatService {
     private FlatsRepository flatsRepository;
     @Autowired
     private ResidentsRepository residentsRepository;
-    //@Transactional
+    @Transactional
     public Flat addFlat(RegisterFlatDto flatDto){
         Optional emptyOptional = Optional.empty();
         if(flatDto.getResidentId()==0)
@@ -30,6 +31,32 @@ public class FlatService {
         if(flatByName != null)
             return null;
         Flat flat = new Flat(flatDto.getName(),flatDto.getPassword(),flatDto.getStreet(),flatDto.getNumber(),flatDto.getCity(), owner.get()); // i tutaj wlasciciel
+        //owner.get().setFlatMem(flat);
+        try{
+            flatsRepository.save(flat);
+            residentsRepository.save(owner.get());
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
+        return flat;
+    }
+    @Transactional
+    public Flat addResidentToFlat(LoginFlatDto loginflatDto)
+    {
+        Flat flat = flatsRepository.findByName(loginflatDto.getName());
+        if(flat == null)
+            return null;
+        if(!flat.getPassword().equals(loginflatDto.getPassword()))
+            return null;
+        Optional emptyOptional = Optional.empty();
+        if(loginflatDto.getResidentId()==0)
+            return null;
+        Optional<Resident> resident = residentsRepository.findById(loginflatDto.getResidentId());
+        if(resident==emptyOptional)
+            return null;
+        flat.addResident(resident.get());
         try{
             flatsRepository.save(flat);
         }

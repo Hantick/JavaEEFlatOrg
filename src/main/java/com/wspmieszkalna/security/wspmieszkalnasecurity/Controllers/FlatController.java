@@ -1,6 +1,7 @@
 package com.wspmieszkalna.security.wspmieszkalnasecurity.Controllers;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.Flat;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.service.FlatService;
+import dto.LoginFlatDto;
 import dto.RegisterFlatDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,20 @@ public class FlatController {
             return new ResponseEntity<>("Wystąpił błąd podczas tworzenia mieszkania", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(registered, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST, value = "/addResident")
+    @ResponseBody
+    public ResponseEntity addResident(@Valid @RequestBody LoginFlatDto loginflatDto, BindingResult result) {
+        Flat flat = new Flat();
+        if (!result.hasErrors()) {
+            flat = flatService.addResidentToFlat(loginflatDto);
+        }
+        if (flat == null || flat.getId() == 0) {
+            return new ResponseEntity<>("Wystąpił błąd podczas logowania do mieszkania", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(flat, HttpStatus.OK);
     }
 }
 

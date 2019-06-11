@@ -19,9 +19,25 @@ public class Flat {
     private String number;
     @Column(name = "flat_city")
     private String city;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(unique = true)
     private Resident flat_owner;
+
+
+    @OneToMany
+    private Set<Resident> residents;
+
+    public void addResident(Resident newResident) {
+        this.residents.add(newResident);
+    }
+    public Set<Resident> getResidents() {
+        return residents;
+    }
+    public void setResidents(Set<Resident> residents) {
+        this.residents = residents;
+    }
+
     public void setResident(Resident flat_owner) {
         this.flat_owner= flat_owner;
     }
