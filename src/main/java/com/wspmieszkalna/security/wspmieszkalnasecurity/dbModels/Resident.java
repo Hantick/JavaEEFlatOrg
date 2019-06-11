@@ -23,7 +23,8 @@ public class Resident {
     private String surname;
     @Column(name = "phone_number")
     private String phone_number;
-
+    @OneToOne(mappedBy = "flat_owner")
+    private Flat flat;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "resident_roles", joinColumns = @JoinColumn(name = "resident_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;

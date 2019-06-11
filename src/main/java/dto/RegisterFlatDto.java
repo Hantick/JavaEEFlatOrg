@@ -1,36 +1,55 @@
 package dto;
 
+import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.Resident;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Data
 public class RegisterFlatDto {
-    private String flat_name;
-    private String flat_password;
-    private String flat_street;
-    private String flat_number;
-    private String flat_city;
+    @NotNull
+    @NotEmpty
+    private String name;
+    @NotNull
+    @NotEmpty
+    private String password;
+    @NotNull
+    @NotEmpty
+    private String street;
+    @NotNull
+    @NotEmpty
+    private String number;
+    @NotNull
+    @NotEmpty
+    private String city;
+    @Positive
+    private int residentId;
 
-    public String getFlat_name() {
-        return flat_name;
+    public int getResidentId() {
+        return residentId;
     }
 
-    public String getFlat_password() {
-        return flat_password;
+    public String getName() {
+        return name;
     }
 
-    public String getFlat_street() {
-        return flat_street;
+    public String getPassword() {
+        return password;
     }
 
-    public String getFlat_number() {
-        return flat_number;
+    public String getStreet() {
+        return street;
     }
 
-    public String getFlat_city() {
-        return flat_city;
+    public String getNumber() {
+        return number;
     }
+
+    public String getCity() {
+        return city;
+    }
+
 }
 

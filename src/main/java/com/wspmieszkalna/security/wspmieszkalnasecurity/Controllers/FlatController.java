@@ -1,6 +1,6 @@
 package com.wspmieszkalna.security.wspmieszkalnasecurity.Controllers;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.Flat;
-import com.wspmieszkalna.security.wspmieszkalnasecurity.service.CustomFlatsDetailsService;
+import com.wspmieszkalna.security.wspmieszkalnasecurity.service.FlatService;
 import dto.RegisterFlatDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @RequestMapping(value = "/flat")
 public class FlatController {
     @Autowired
-    CustomFlatsDetailsService flatService;
+    FlatService flatService;
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/register")
@@ -24,7 +24,7 @@ public class FlatController {
     public ResponseEntity register(@Valid @RequestBody RegisterFlatDto flatDto, BindingResult result) {
         Flat registered = new Flat();
         if (!result.hasErrors()) {
-            registered = flatService.saveFlat(flatDto);
+            registered = flatService.addFlat(flatDto);
         }
         if (registered == null || registered.getId() == 0) {
             return new ResponseEntity<>("Wystąpił błąd podczas tworzenia mieszkania", HttpStatus.BAD_REQUEST);
