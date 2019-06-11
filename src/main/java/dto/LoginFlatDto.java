@@ -10,7 +10,7 @@ import javax.validation.constraints.Positive;
 public class LoginFlatDto {
     @NotNull
     @NotEmpty
-    private String name;
+    private String flat_name;
     @NotNull
     @NotEmpty
     private String password;
@@ -22,7 +22,7 @@ public class LoginFlatDto {
     }
 
     public String getName() {
-        return name;
+        return flat_name;
     }
 
     public String getPassword() {

@@ -6,11 +6,11 @@ import javax.validation.constraints.NotNull;
 public class ProductsDto {
     @NotNull
     @NotEmpty
-    private String name;
+    private String flat_name;
     private String products;
 
     public String getName() {
-        return name;
+        return flat_name;
     }
 
     public String getProducts() {
