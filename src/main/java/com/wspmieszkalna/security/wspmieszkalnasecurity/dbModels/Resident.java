@@ -10,7 +10,7 @@ import java.util.Set;
 public class Resident {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "resident_id")
     private int id;
     @Column(name = "login")
@@ -32,9 +32,14 @@ public class Resident {
 
     @Transient
     private String passwordConfirm;
-
     public Resident() {
-
+    }
+    public Resident(String _login, String _password, String _name, String _surname, String _phone_number) {
+        this.login=_login;
+        this.password=_password;
+        this.name=_name;
+        this.surname=_surname;
+        this.phone_number=_phone_number;
     }
     public Resident(Resident residents){
         this.id=residents.getId();

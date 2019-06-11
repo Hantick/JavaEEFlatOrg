@@ -3,6 +3,7 @@ package com.wspmieszkalna.security.wspmieszkalnasecurity.Controllers;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.Resident;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.service.CustomResidentsDetailsService;
 import dto.LoginDto;
+import dto.RegisterResidentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +32,18 @@ public class ResidentController {
             return new ResponseEntity<>("Nie udało się zalogować!", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(logged, HttpStatus.OK);
+    }
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST, value = "/register")
+    @ResponseBody
+    public ResponseEntity register(@Valid @RequestBody RegisterResidentDto accountDto, BindingResult result) {
+        Resident registered = new Resident();
+        if (!result.hasErrors()) {
+            registered = userService.saveResident(accountDto);
+        }
+        if (registered == null || registered.getId() == 0) {
+            return new ResponseEntity<>("Wystąpił błąd podczas rejestracji", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(registered, HttpStatus.OK);
     }
 }

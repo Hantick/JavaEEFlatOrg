@@ -5,6 +5,7 @@ import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.Resident;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.repositories.ResidentsRepository;
 import com.wspmieszkalna.security.wspmieszkalnasecurity.dbModels.repositories.RolesRepository;
 import dto.LoginDto;
+import dto.RegisterResidentDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,22 @@ public class CustomResidentsDetailsService implements UserDetailsService {
         log.info("loadUserByUsername() : {}", login);
         return optionalResidents
                 .map(CustomResidentDetails::new).get();
+    }
+    public Resident saveResident(RegisterResidentDto userDto){
+        Optional emptyOptional = Optional.empty();
+        Optional<Resident> userByLogin = residentsRepository.findResidentByLogin(userDto.getLogin());
+        if(userByLogin != emptyOptional)
+            return null;
+
+        Resident user = new Resident(userDto.getLogin(), userDto.getPassword(), userDto.getName(), userDto.getSurname(), userDto.getPhone_number());
+        try{
+            residentsRepository.save(user);
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
+        return user;
     }
     public Resident login(LoginDto loginDto) {
         Optional emptyOptional = Optional.empty();
