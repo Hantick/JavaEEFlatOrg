@@ -18,7 +18,7 @@ public class FlatService {
     private FlatsRepository flatsRepository;
     @Autowired
     private ResidentsRepository residentsRepository;
-    @Transactional
+    //@Transactional
     public Flat addFlat(RegisterFlatDto flatDto){
         Optional emptyOptional = Optional.empty();
         if(flatDto.getResidentId()==0)
